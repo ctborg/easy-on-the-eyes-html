@@ -1,0 +1,34 @@
+# --- macOS System Files ---
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon?
+._*
+
+# --- Files that might appear on external drives ---
+.Spotlight-V100
+.Trashes
+
+# --- Node / Build Tools ---
+dist/
+build/
+plans/
+.cache/
+.wrangler/
+
+# --- Editors & IDEs ---
+.vscode/
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.swp
+
+# --- Environment Variables ---
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
