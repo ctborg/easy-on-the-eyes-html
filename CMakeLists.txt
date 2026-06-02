@@ -43,3 +43,12 @@ add_custom_target(run_tests
     DEPENDS test_runner
     WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
 )
+
+find_program(NODE_EXECUTABLE node)
+if(NODE_EXECUTABLE)
+    add_custom_target(bench_formatters
+        COMMAND ${NODE_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIR}/benchmarks/scripts/bench-formatters.mjs
+        DEPENDS easy-on-the-eyes
+        WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}
+    )
+endif()

@@ -32,6 +32,70 @@ build/easy-on-the-eyes
 cmake --build build --target run_tests
 ```
 
+## Benchmarks
+
+The benchmark harness compares `easy-on-the-eyes` against popular Node-based formatters:
+
+- Prettier
+- js-beautify
+
+Build the C binary first:
+
+```sh
+cmake -S . -B build
+cmake --build build
+```
+
+Then run:
+
+```sh
+cmake --build build --target bench_formatters
+```
+
+For cleaner comparisons, install the JavaScript formatters locally so the benchmark does not include
+`npx` package startup or download overhead:
+
+```sh
+npm i --no-save prettier js-beautify
+cmake --build build --target bench_formatters
+```
+
+You can tune sample counts with environment variables:
+
+```sh
+BENCH_WARMUPS=5 BENCH_ROUNDS=50 cmake --build build --target bench_formatters
+```
+
+### Example Results
+
+Short local smoke run on macOS with `BENCH_WARMUPS=1 BENCH_ROUNDS=2`:
+
+```text
+## HTML
+easy-on-the-eyes   mean 1.76ms | p50 2.20ms | p95 2.20ms | min 1.32ms
+prettier (npx)     mean 564.58ms | p50 575.36ms | p95 575.36ms | min 553.79ms
+js-beautify (npx)  mean 520.43ms | p50 526.97ms | p95 526.97ms | min 513.89ms
+
+## CSS
+easy-on-the-eyes   mean 1.43ms | p50 1.45ms | p95 1.45ms | min 1.41ms
+prettier (npx)     mean 540.88ms | p50 560.62ms | p95 560.62ms | min 521.14ms
+js-beautify (npx)  mean 527.89ms | p50 533.96ms | p95 533.96ms | min 521.82ms
+
+## JS
+easy-on-the-eyes   mean 1.31ms | p50 1.33ms | p95 1.33ms | min 1.28ms
+prettier (npx)     mean 565.20ms | p50 595.28ms | p95 595.28ms | min 535.13ms
+js-beautify (npx)  mean 523.29ms | p50 525.76ms | p95 525.76ms | min 520.82ms
+
+## JSON
+easy-on-the-eyes   mean 1.61ms | p50 1.76ms | p95 1.76ms | min 1.47ms
+prettier (npx)     mean 550.64ms | p50 589.14ms | p95 589.14ms | min 512.14ms
+js-beautify (npx)  mean 513.57ms | p50 520.03ms | p95 520.03ms | min 507.11ms
+```
+
+These numbers include full CLI process startup. The Prettier and js-beautify results above used
+`npx`, so they also include package startup/download overhead. Install them locally before drawing
+serious conclusions.
+
 ## Usage
 
 ```sh

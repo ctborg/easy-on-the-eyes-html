@@ -12,6 +12,7 @@ Icon?
 # --- Node / Build Tools ---
 dist/
 build/
+benchmarks/results/
 plans/
 .cache/
 .wrangler/
@@ -31,4 +32,3 @@ plans/
 .env.development.local
 .env.test.local
 .env.production.local
-
