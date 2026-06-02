@@ -68,33 +68,34 @@ BENCH_WARMUPS=5 BENCH_ROUNDS=50 cmake --build build --target bench_formatters
 
 ### Example Results
 
-Short local smoke run on macOS with `BENCH_WARMUPS=1 BENCH_ROUNDS=2`:
+Local run on macOS with locally installed Prettier/js-beautify and
+`BENCH_WARMUPS=5 BENCH_ROUNDS=50`:
 
 ```text
 ## HTML
-easy-on-the-eyes   mean 1.76ms | p50 2.20ms | p95 2.20ms | min 1.32ms
-prettier (npx)     mean 564.58ms | p50 575.36ms | p95 575.36ms | min 553.79ms
-js-beautify (npx)  mean 520.43ms | p50 526.97ms | p95 526.97ms | min 513.89ms
+easy-on-the-eyes  mean 1.39ms | p50 1.27ms | p95 1.78ms | min 1.12ms
+prettier          mean 104.23ms | p50 104.02ms | p95 105.62ms | min 102.45ms
+js-beautify       mean 75.85ms | p50 75.48ms | p95 77.22ms | min 73.92ms
 
 ## CSS
-easy-on-the-eyes   mean 1.43ms | p50 1.45ms | p95 1.45ms | min 1.41ms
-prettier (npx)     mean 540.88ms | p50 560.62ms | p95 560.62ms | min 521.14ms
-js-beautify (npx)  mean 527.89ms | p50 533.96ms | p95 533.96ms | min 521.82ms
+easy-on-the-eyes  mean 1.29ms | p50 1.26ms | p95 1.62ms | min 1.12ms
+prettier          mean 91.42ms | p50 91.53ms | p95 92.97ms | min 89.92ms
+js-beautify       mean 72.76ms | p50 71.96ms | p95 73.62ms | min 70.75ms
 
 ## JS
-easy-on-the-eyes   mean 1.31ms | p50 1.33ms | p95 1.33ms | min 1.28ms
-prettier (npx)     mean 565.20ms | p50 595.28ms | p95 595.28ms | min 535.13ms
-js-beautify (npx)  mean 523.29ms | p50 525.76ms | p95 525.76ms | min 520.82ms
+easy-on-the-eyes  mean 1.27ms | p50 1.24ms | p95 1.56ms | min 1.09ms
+prettier          mean 97.02ms | p50 96.68ms | p95 99.35ms | min 95.31ms
+js-beautify       mean 74.62ms | p50 74.60ms | p95 76.04ms | min 73.10ms
 
 ## JSON
-easy-on-the-eyes   mean 1.61ms | p50 1.76ms | p95 1.76ms | min 1.47ms
-prettier (npx)     mean 550.64ms | p50 589.14ms | p95 589.14ms | min 512.14ms
-js-beautify (npx)  mean 513.57ms | p50 520.03ms | p95 520.03ms | min 507.11ms
+easy-on-the-eyes  mean 1.27ms | p50 1.24ms | p95 1.48ms | min 1.13ms
+prettier          mean 90.39ms | p50 90.32ms | p95 92.15ms | min 88.36ms
+js-beautify       mean 74.38ms | p50 74.05ms | p95 75.47ms | min 72.87ms
 ```
 
-These numbers include full CLI process startup. The Prettier and js-beautify results above used
-`npx`, so they also include package startup/download overhead. Install them locally before drawing
-serious conclusions.
+These numbers include full CLI process startup. Benchmark results vary by machine, installed
+formatter versions, fixture size, and whether JavaScript formatters are run through local binaries
+or `npx`.
 
 ## Usage
 

@@ -13,6 +13,7 @@ Icon?
 dist/
 build/
 benchmarks/results/
+node_modules/
 plans/
 .cache/
 .wrangler/
